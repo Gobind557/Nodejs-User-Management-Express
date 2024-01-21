@@ -45,19 +45,18 @@ app.use(
 // Flash Messages
 app.use(flash({ sessionKeyName: 'flashMessage' }));
 
-// Templating Engine
 app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(csrfProtection);
-app.use(isAuth.authenticateToken, (req, res, next) => {
-  res.locals.isAuth = req.user;
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+// app.use(csrfProtection);
+// app.use(isAuth.authenticateToken, (req, res, next) => {
+//   res.locals.isAuth = req.user;
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
 
 // Using the routes
 app.use("/", require('./server/routes/UserRoute'));
